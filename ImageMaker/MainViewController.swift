@@ -417,6 +417,20 @@ class MainViewController: UIViewController {
         
         return slider
     }()
+    
+    // MARK: - Generate Button
+    private let generateButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Generate", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 24)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 10
+        
+        return button
+    }()
+    
     // MARK: - View Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -440,6 +454,8 @@ private extension MainViewController {
         self.entireStackView.addArrangedSubview(decoderSelectStackView)
         self.entireStackView.addArrangedSubview(noiseRemoveStepsByDecoderStackView)
         self.entireStackView.addArrangedSubview(noiseRemoveScaleByDecoderStackView)
+        self.entireStackView.addArrangedSubview(generateButton)
+
         configPromptStackView()
         configNegativePromptStackView()
         
@@ -453,6 +469,8 @@ private extension MainViewController {
         
         configNoiseRemoveStepsByDecoderStackView()
         configNoiseRemoveScaleByDecoderStackView()
+        
+        configGenerateButton()
         
         entireScrollView.isDirectionalLockEnabled = true
         entireScrollView.snp.makeConstraints { make in
@@ -582,4 +600,8 @@ private extension MainViewController {
         noiseRemoveScaleByDecoderLabelStackView.addArrangedSubview(noiseRemoveScaleByDecoderCountLabel)
     }
     
+    func configGenerateButton() {
+        
+    }
 }
+

@@ -137,6 +137,41 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
+    private let imageQualityLabelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        
+        return stackView
+    }()
+    
+    private let imageQualityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Image Quality"
+        label.textColor = Constant.textColor
+        label.font = .boldSystemFont(ofSize: 20)
+        
+        return label
+    }()
+    
+    private let imageQualityCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = Constant.textColor
+        label.text = "70"
+        
+        return label
+    }()
+    
+    private let imageQualitySlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 1
+        slider.maximumValue = 100
+        slider.value = 70
+        
+        return slider
+    }()
     // MARK: - View Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()

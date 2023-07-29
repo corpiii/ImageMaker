@@ -10,7 +10,7 @@ import Foundation
 struct KarloService {
     private let baseURL = "https://api.kakaobrain.com/v2/inference/karlo/t2i"
     
-    func perfromImageGeneration(_ imageConfiguration: ImageConfiguration, _ completion: @escaping (Result<Data, Error>) -> Void) {
+    func perfromImageGeneration(_ imageConfiguration: ImageConfiguration, _ completion: @escaping (Result<[String], Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(NSError(domain: "Invalid URL", code: -1)))
             return
@@ -26,6 +26,37 @@ struct KarloService {
                 request.setValue(apiKey, forHTTPHeaderField: "Authorization")
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = jsonData
+                
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+                    
+                    guard let httpResponse = response as? HTTPURLResponse else {
+                        completion(.failure(NSError(domain: "Invalid HTTP response", code: -1)))
+                        return
+                    }
+                    
+                    guard httpResponse.statusCode == 200 else {
+                        let statusCodeError = NSError(domain: "Invalid status code: \(httpResponse.statusCode)", code: httpResponse.statusCode)
+                        completion(.failure(statusCodeError))
+                        return
+                    }
+                    
+                    if let data = data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let resultData = try decoder.decode(KarloResponseData.self, from: data)
+                            
+                            let result = resultData.images.map { $0.image }
+                            
+                            completion(.success(result))
+                        } catch {
+                            print("Error decoding to JSON: \(error)")
+                        }
+                    }
+                }
             }
         } catch {
             print("Error encoding to JSON: \(error)")

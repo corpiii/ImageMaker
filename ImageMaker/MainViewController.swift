@@ -172,6 +172,43 @@ class MainViewController: UIViewController {
         
         return slider
     }()
+    
+    // MARK: - Image Count Stack
+    private let imageCountStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        
+        return stackView
+    }()
+    
+    private let imageCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Image Count"
+        label.textColor = Constant.textColor
+        label.font = .boldSystemFont(ofSize: 20)
+        
+        return label
+    }()
+    
+    private let imageCountStpperCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "1"
+        label.textColor = Constant.textColor
+        
+        return label
+    }()
+    
+    private let imageCountStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.translatesAutoresizingMaskIntoConstraints = false
+        stepper.backgroundColor = Constant.textColor
+        
+        return stepper
+    }()
+
     // MARK: - View Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -189,7 +226,12 @@ private extension MainViewController {
         self.entireStackView.addArrangedSubview(promptStackView)
         self.entireStackView.addArrangedSubview(negativePromptStackView)
         self.entireStackView.addArrangedSubview(imageQualityStackView)
+        self.entireStackView.addArrangedSubview(imageCountStackView)
         configPromptStackView()
+        configNegativePromptStackView()
+        
+        configImageQualityStackView()
+        configImageCountStackView()
         entireScrollView.isDirectionalLockEnabled = true
         entireScrollView.snp.makeConstraints { make in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
@@ -248,4 +290,13 @@ private extension MainViewController {
         imageQualityLabelStackView.addArrangedSubview(imageQualityCountLabel)
     }
     
+    // MARK: - Image Count Setting
+    func configImageCountStackView() {
+        imageCountStackView.spacing = 10
+        
+        imageCountStackView.addArrangedSubview(imageCountLabel)
+        imageCountStackView.addArrangedSubview(UIView())
+        imageCountStackView.addArrangedSubview(imageCountStpperCountLabel)
+        imageCountStackView.addArrangedSubview(imageCountStepper)
+    }
 }

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SnapKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -27,10 +29,9 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     private func setupViews() {
         // 셀에 이미지뷰 추가
         addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        imageView.snp.makeConstraints { make in
+            make.edges.equalTo(self.snp.edges)
+        }
     }
 }

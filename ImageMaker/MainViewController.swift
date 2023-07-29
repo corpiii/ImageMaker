@@ -127,6 +127,16 @@ class MainViewController: UIViewController {
         
         return textView
     }()
+    
+    // MARK: - Image Quality Stack
+    private let imageQualityStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    
     // MARK: - View Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,7 +150,10 @@ private extension MainViewController {
     func configStackView() {
         self.view.addSubview(entireScrollView)
         entireScrollView.addSubview(entireStackView)
+        
         self.entireStackView.addArrangedSubview(promptStackView)
+        self.entireStackView.addArrangedSubview(negativePromptStackView)
+        self.entireStackView.addArrangedSubview(imageQualityStackView)
         configPromptStackView()
         entireScrollView.isDirectionalLockEnabled = true
         entireScrollView.snp.makeConstraints { make in
@@ -187,4 +200,17 @@ private extension MainViewController {
         negativePromptLabelStackView.addArrangedSubview(UIView())
         negativePromptLabelStackView.addArrangedSubview(negativePromptTextCountLabel)
     }
+    
+    // MARK: - Image Quality Setting
+    func configImageQualityStackView() {
+        imageQualityStackView.addArrangedSubview(imageQualityLabelStackView)
+        imageQualityStackView.addArrangedSubview(imageQualitySlider)
+        
+        imageQualityStackView.spacing = 10
+        
+        imageQualityLabelStackView.addArrangedSubview(imageQualityLabel)
+        imageQualityLabelStackView.addArrangedSubview(UIView())
+        imageQualityLabelStackView.addArrangedSubview(imageQualityCountLabel)
+    }
+    
 }

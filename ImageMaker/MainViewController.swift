@@ -328,6 +328,50 @@ class MainViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Noise Remove Steps By Decoder Stack
+    private let noiseRemoveStepsByDecoderStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    
+    private let noiseRemoveStepsByDecoderLabelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        
+        return stackView
+    }()
+    
+    private let noiseRemoveStepsByDecoderLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Noise Remove Steps By Decoder"
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textColor = Constant.textColor
+        
+        return label
+    }()
+    
+    private let noiseRemoveStepsByDecoderCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "50"
+        label.textColor = Constant.textColor
+        
+        return label
+    }()
+    
+    private let noiseRemoveStepsByDecoderSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 10
+        slider.maximumValue = 100
+        slider.value = 50
+        
+        return slider
+    }()
     // MARK: - View Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -348,6 +392,8 @@ private extension MainViewController {
         self.entireStackView.addArrangedSubview(imageCountStackView)
         self.entireStackView.addArrangedSubview(noiseRemoveStepsStackView)
         self.entireStackView.addArrangedSubview(noiseRemoveScaleStackView)
+        self.entireStackView.addArrangedSubview(decoderSelectStackView)
+        self.entireStackView.addArrangedSubview(noiseRemoveStepsByDecoderStackView)
         configPromptStackView()
         configNegativePromptStackView()
         
@@ -358,6 +404,8 @@ private extension MainViewController {
         configNoiseRemoveScaleStackView()
         
         configDecoderSelectStackView()
+        
+        configNoiseRemoveStepsByDecoderStackView()
         entireScrollView.isDirectionalLockEnabled = true
         entireScrollView.snp.makeConstraints { make in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
@@ -460,4 +508,18 @@ private extension MainViewController {
             make.width.equalTo(self.view.safeAreaLayoutGuide.snp.width).multipliedBy(0.4)
         }
     }
+    
+    // MARK: - Noise Remove Steps By Decoder Setting
+    func configNoiseRemoveStepsByDecoderStackView() {
+        noiseRemoveStepsByDecoderStackView.addArrangedSubview(noiseRemoveStepsByDecoderLabelStackView)
+        noiseRemoveStepsByDecoderStackView.addArrangedSubview(noiseRemoveStepsByDecoderSlider)
+        
+        noiseRemoveStepsByDecoderStackView.spacing = 10
+        
+        noiseRemoveStepsByDecoderLabelStackView.addArrangedSubview(noiseRemoveStepsByDecoderLabel)
+        noiseRemoveStepsByDecoderLabelStackView.addArrangedSubview(UIView())
+        noiseRemoveStepsByDecoderLabelStackView.addArrangedSubview(noiseRemoveStepsByDecoderCountLabel)
+        
+    }
+    
 }

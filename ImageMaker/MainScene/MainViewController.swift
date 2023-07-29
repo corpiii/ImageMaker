@@ -672,7 +672,8 @@ private extension MainViewController {
                                                noiseRemoveScaleByDecoder: Double(noiseRemoveScaleByDecoderCountLabel.text!)!)
         
         let albumController = AlbumViewController(imageConfiguration: configuration)
-        present(albumController, animated: true)
+        let navigationController = UINavigationController(rootViewController: albumController)
+        present(navigationController, animated: true)
     }
 }
 

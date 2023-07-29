@@ -38,9 +38,8 @@ class AlbumViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configIndicatorView()
         configCollectionView()
-        
+        configIndicatorView()
         activityIndicator.startAnimating()
         
         karloService.perfromImageGeneration(imageConfiguration) { [weak self] result in
@@ -66,7 +65,6 @@ class AlbumViewController: UIViewController {
                 print(failure)
             }
         }
-        
     }
     
     init(imageConfiguration: ImageConfiguration) {
@@ -83,9 +81,9 @@ private extension AlbumViewController {
     func configIndicatorView() {
         self.view.addSubview(activityIndicator)
         
+        activityIndicator.color = Constant.textColor
         activityIndicator.snp.makeConstraints { make in
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide.snp.centerX)
-            make.centerY.equalTo(self.view.safeAreaLayoutGuide.snp.centerY)
+            make.center.equalTo(self.view.snp.center)
         }
     }
     
@@ -102,7 +100,6 @@ private extension AlbumViewController {
 
 // MARK: - UICollectionViewDataSource
 extension AlbumViewController: UICollectionViewDataSource {
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
@@ -133,5 +130,14 @@ extension AlbumViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let image = photos[indexPath.item]
+        let detailViewController = DetailViewController(image: image)
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

@@ -38,6 +38,9 @@ class AlbumViewController: UIViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
         view.addSubview(collectionView)
         
+        self.view.backgroundColor = Constant.backGroundColor
+        self.collectionView.backgroundColor = Constant.backGroundColor
+        
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
         }

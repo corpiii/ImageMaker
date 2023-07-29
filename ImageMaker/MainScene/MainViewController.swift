@@ -9,14 +9,6 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
-    private enum Constant {
-        static let backGroundColor: UIColor = UIColor(cgColor: .init(red: 18 / 256,
-                                                                     green: 18 / 256,
-                                                                     blue: 18 / 256,
-                                                                     alpha: 1.0))
-        static let textColor: UIColor = .white
-    }
-    
     private let entireScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false

@@ -299,6 +299,35 @@ class MainViewController: UIViewController {
         
         return slider
     }()
+    
+    // MARK: - Decoder Select Stack
+    private let decoderSelectStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        
+        return stackView
+    }()
+    
+    private let decoderSelectLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textColor = Constant.textColor
+        label.text = "Decoder"
+        
+        return label
+    }()
+    
+    private let decoderSelectButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("decoder_ddim_v_prediction", for: .normal)
+        button.titleLabel?.lineBreakMode = .byTruncatingTail
+        
+        return button
+    }()
+    
     // MARK: - View Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -328,6 +357,7 @@ private extension MainViewController {
         configNoiseRemoveStepsStackView()
         configNoiseRemoveScaleStackView()
         
+        configDecoderSelectStackView()
         entireScrollView.isDirectionalLockEnabled = true
         entireScrollView.snp.makeConstraints { make in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
@@ -418,5 +448,16 @@ private extension MainViewController {
         noiseRemoveScaleLabelStackView.addArrangedSubview(noiseRemoveScaleLabel)
         noiseRemoveScaleLabelStackView.addArrangedSubview(UIView())
         noiseRemoveScaleLabelStackView.addArrangedSubview(noiseRemoveScaleCountLabel)
+    }
+    
+    // MARK: - Decoder Select Setting
+    func configDecoderSelectStackView() {
+        decoderSelectStackView.addArrangedSubview(decoderSelectLabel)
+        decoderSelectStackView.addArrangedSubview(UIView())
+        decoderSelectStackView.addArrangedSubview(decoderSelectButton)
+        
+        decoderSelectButton.snp.makeConstraints { make in
+            make.width.equalTo(self.view.safeAreaLayoutGuide.snp.width).multipliedBy(0.4)
+        }
     }
 }

@@ -9,16 +9,17 @@
 /* Begin PBXBuildFile section */
 		AC542FB72A750DC0007A9AAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FB62A750DC0007A9AAE /* AppDelegate.swift */; };
 		AC542FB92A750DC0007A9AAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */; };
-		AC542FBB2A750DC0007A9AAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FBA2A750DC0007A9AAE /* ViewController.swift */; };
+		AC542FBB2A750DC0007A9AAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FBA2A750DC0007A9AAE /* MainViewController.swift */; };
 		AC542FC02A750DC1007A9AAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC542FBF2A750DC1007A9AAE /* Assets.xcassets */; };
 		AC542FC32A750DC1007A9AAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC542FC12A750DC1007A9AAE /* LaunchScreen.storyboard */; };
+		AC542FCD2A751171007A9AAE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AC542FCC2A751171007A9AAE /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AC542FB32A750DC0007A9AAE /* ImageMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC542FB62A750DC0007A9AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AC542FBA2A750DC0007A9AAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AC542FBA2A750DC0007A9AAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AC542FBF2A750DC1007A9AAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC542FC22A750DC1007A9AAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC542FC42A750DC1007A9AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC542FCD2A751171007A9AAE /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +42,7 @@
 			children = (
 				AC542FB52A750DC0007A9AAE /* ImageMaker */,
 				AC542FB42A750DC0007A9AAE /* Products */,
+				AC542FCB2A751171007A9AAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +59,19 @@
 			children = (
 				AC542FB62A750DC0007A9AAE /* AppDelegate.swift */,
 				AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */,
-				AC542FBA2A750DC0007A9AAE /* ViewController.swift */,
+				AC542FBA2A750DC0007A9AAE /* MainViewController.swift */,
 				AC542FBF2A750DC1007A9AAE /* Assets.xcassets */,
 				AC542FC12A750DC1007A9AAE /* LaunchScreen.storyboard */,
 				AC542FC42A750DC1007A9AAE /* Info.plist */,
 			);
 			path = ImageMaker;
+			sourceTree = "<group>";
+		};
+		AC542FCB2A751171007A9AAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +90,9 @@
 			dependencies = (
 			);
 			name = ImageMaker;
+			packageProductDependencies = (
+				AC542FCC2A751171007A9AAE /* SnapKit */,
+			);
 			productName = ImageMaker;
 			productReference = AC542FB32A750DC0007A9AAE /* ImageMaker.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +121,9 @@
 				Base,
 			);
 			mainGroup = AC542FAA2A750DC0007A9AAE;
+			packageReferences = (
+				AC542FCA2A751163007A9AAE /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = AC542FB42A750DC0007A9AAE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,7 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC542FBB2A750DC0007A9AAE /* ViewController.swift in Sources */,
+				AC542FBB2A750DC0007A9AAE /* MainViewController.swift in Sources */,
 				AC542FB72A750DC0007A9AAE /* AppDelegate.swift in Sources */,
 				AC542FB92A750DC0007A9AAE /* SceneDelegate.swift in Sources */,
 			);
@@ -358,6 +374,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC542FCA2A751163007A9AAE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC542FCC2A751171007A9AAE /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC542FCA2A751163007A9AAE /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC542FAB2A750DC0007A9AAE /* Project object */;
 }

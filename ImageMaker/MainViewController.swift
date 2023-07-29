@@ -209,6 +209,52 @@ class MainViewController: UIViewController {
         return stepper
     }()
 
+    
+    // MARK: - Image Noise Remove Steps Stack
+    private let noiseRemoveStepsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    
+    private let noiseRemoveStepsLabelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        
+        return stackView
+    }()
+    
+    private let noiseRemoveStepsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textColor = Constant.textColor
+        label.text = "Noise Remove Steps"
+        
+        return label
+    }()
+    
+    private let noiseRemoveStepsCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = Constant.textColor
+        label.text = "25"
+        
+        return label
+    }()
+    
+    private let noiseRemoveStepsSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 10
+        slider.maximumValue = 100
+        slider.value = 25
+        
+        return slider
+    }()
+    
     // MARK: - View Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -227,11 +273,14 @@ private extension MainViewController {
         self.entireStackView.addArrangedSubview(negativePromptStackView)
         self.entireStackView.addArrangedSubview(imageQualityStackView)
         self.entireStackView.addArrangedSubview(imageCountStackView)
+        self.entireStackView.addArrangedSubview(noiseRemoveStepsStackView)
         configPromptStackView()
         configNegativePromptStackView()
         
         configImageQualityStackView()
         configImageCountStackView()
+        
+        configNoiseRemoveStepsStackView()
         entireScrollView.isDirectionalLockEnabled = true
         entireScrollView.snp.makeConstraints { make in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
@@ -299,4 +348,17 @@ private extension MainViewController {
         imageCountStackView.addArrangedSubview(imageCountStpperCountLabel)
         imageCountStackView.addArrangedSubview(imageCountStepper)
     }
+    
+    // MARK: - Noise Remove Steps Setting
+    func configNoiseRemoveStepsStackView() {
+        noiseRemoveStepsStackView.addArrangedSubview(noiseRemoveStepsLabelStackView)
+        noiseRemoveStepsStackView.addArrangedSubview(noiseRemoveStepsSlider)
+        
+        noiseRemoveStepsStackView.spacing = 10
+        
+        noiseRemoveStepsLabelStackView.addArrangedSubview(noiseRemoveStepsLabel)
+        noiseRemoveStepsLabelStackView.addArrangedSubview(UIView())
+        noiseRemoveStepsLabelStackView.addArrangedSubview(noiseRemoveStepsCountLabel)
+    }
+    
 }

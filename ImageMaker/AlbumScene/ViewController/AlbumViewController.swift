@@ -7,15 +7,14 @@
 
 import UIKit
 
-class AlbumViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class AlbumViewController: UIViewController {
     private let reuseIdentifier = "PhotoCell"
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
     private let imageConfiguration: ImageConfiguration
     
-    // 데이터 배열 예시
-    private let photos: [UIImage] = [
+    private var photos: [UIImage] = [
         UIImage(systemName: "plus")!,
         UIImage(systemName: "plus")!,
         UIImage(systemName: "plus")!,
@@ -33,17 +32,22 @@ class AlbumViewController: UIViewController, UICollectionViewDataSource, UIColle
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         return collectionView
     }()
-
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return indicator
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(collectionView)
         
-        self.view.backgroundColor = Constant.backGroundColor
-        self.collectionView.backgroundColor = Constant.backGroundColor
+        configIndicatorView()
+        configCollectionView()
         
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
-        }
+        activityIndicator.startAnimating()
     }
     
     init(imageConfiguration: ImageConfiguration) {
@@ -54,8 +58,31 @@ class AlbumViewController: UIViewController, UICollectionViewDataSource, UIColle
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+private extension AlbumViewController {
+    func configIndicatorView() {
+        self.view.addSubview(activityIndicator)
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.equalTo(self.view.safeAreaLayoutGuide.snp.centerX)
+            make.centerY.equalTo(self.view.safeAreaLayoutGuide.snp.centerY)
+        }
+    }
     
-    // MARK: - UICollectionViewDataSource
+    func configCollectionView() {
+        self.view.addSubview(collectionView)
+        self.view.backgroundColor = Constant.backGroundColor
+        self.collectionView.backgroundColor = Constant.backGroundColor
+        
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension AlbumViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
@@ -66,9 +93,10 @@ class AlbumViewController: UIViewController, UICollectionViewDataSource, UIColle
         cell.imageView.image = photos[indexPath.item]
         return cell
     }
+}
 
-    // MARK: - UICollectionViewDelegateFlowLayout
-
+// MARK: - UICollectionViewDelegateFlowLayout
+extension AlbumViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace

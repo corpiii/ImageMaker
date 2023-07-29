@@ -13,14 +13,9 @@ class AlbumViewController: UIViewController {
     private let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
     private let imageConfiguration: ImageConfiguration
+    private let karloService: KarloService = .init()
     
-    private var photos: [UIImage] = [
-        UIImage(systemName: "plus")!,
-        UIImage(systemName: "plus")!,
-        UIImage(systemName: "plus")!,
-        UIImage(systemName: "plus")!,
-        UIImage(systemName: "plus")!,
-    ]
+    private var photos: [UIImage] = []
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -40,7 +35,6 @@ class AlbumViewController: UIViewController {
         return indicator
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +42,31 @@ class AlbumViewController: UIViewController {
         configCollectionView()
         
         activityIndicator.startAnimating()
+        
+        karloService.perfromImageGeneration(imageConfiguration) { [weak self] result in
+            guard let self else { return }
+            
+            switch result {
+            case .success(let base64Array):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                }
+                base64Array.forEach { string in
+                    guard let data = Data(base64Encoded: string),
+                          let image = UIImage(data: data) else {
+                        return
+                    }
+                    
+                    self.photos.append(image)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        
     }
     
     init(imageConfiguration: ImageConfiguration) {

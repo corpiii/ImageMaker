@@ -671,9 +671,8 @@ private extension MainViewController {
                                                noiseRemoveStepsByDecoder: Int(noiseRemoveStepsByDecoderCountLabel.text!)!,
                                                noiseRemoveScaleByDecoder: Double(noiseRemoveScaleByDecoderCountLabel.text!)!)
         
-        print(configuration)
-        
-        
+        let albumController = AlbumViewController(imageConfiguration: configuration)
+        present(albumController, animated: true)
     }
 }
 

@@ -438,15 +438,30 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = Constant.backGroundColor
         
+        configScrollView()
         configStackView()
     }
 }
 
 private extension MainViewController {
-    func configStackView() {
+    // MARK: - ScrollView setting
+    func configScrollView() {
         self.view.addSubview(entireScrollView)
         entireScrollView.addSubview(entireStackView)
+        entireScrollView.isDirectionalLockEnabled = true
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        entireScrollView.addGestureRecognizer(tapGesture)
+        
+        entireScrollView.snp.makeConstraints { make in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+        
+        entireScrollView.contentSize = entireStackView.bounds.size
+    }
+    
+    // MARK: - StackView setting
+    func configStackView() {
         self.entireStackView.addArrangedSubview(promptStackView)
         self.entireStackView.addArrangedSubview(negativePromptStackView)
         self.entireStackView.addArrangedSubview(imageQualityStackView)
@@ -474,17 +489,10 @@ private extension MainViewController {
         
         configGenerateButton()
         
-        entireScrollView.isDirectionalLockEnabled = true
-        entireScrollView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
-        }
-        
         entireStackView.snp.makeConstraints { make in
             make.edges.equalTo(entireScrollView.snp.edges).inset(20)
             make.centerX.equalTo(entireScrollView.snp.centerX)
         }
-        
-        entireScrollView.contentSize = entireStackView.bounds.size
     }
     
     // MARK: - Prompt setting
@@ -501,7 +509,6 @@ private extension MainViewController {
         promptLabelStackView.addArrangedSubview(promptLabel)
         promptLabelStackView.addArrangedSubview(UIView())
         promptLabelStackView.addArrangedSubview(promptTextCountLabel)
-        
     }
     
     // MARK: - Negative Prompt setting
@@ -650,5 +657,10 @@ private extension MainViewController {
     @objc func noiseScaleByDecodeSliderValueChanged(_ sender: UISlider) {
         let value = String(format: "%.1f", sender.value)
         self.noiseRemoveScaleByDecoderCountLabel.text = "\(value)"
+    }
+    
+    // scrollView tapped
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

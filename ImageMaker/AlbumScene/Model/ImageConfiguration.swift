@@ -15,6 +15,8 @@ struct ImageConfiguration: Codable {
     let noiseRemoveSteps: Int
     let noiseRemoveScale: Double
     let decoder: String
+    let imageFormat: String = "png"
+    let returnType: String = "base64_string"
     let noiseRemoveStepsByDecoder: Int
     let noiseRemoveScaleByDecoder: Double
     
@@ -26,6 +28,8 @@ struct ImageConfiguration: Codable {
         case noiseRemoveSteps = "prior_num_inference_steps"
         case noiseRemoveScale = "prior_guidance_scale"
         case decoder = "scheduler"
+        case imageFormat = "image_format"
+        case returnType = "return_type"
         case noiseRemoveStepsByDecoder = "num_inference_steps"
         case noiseRemoveScaleByDecoder = "guidance_scale"
     }

@@ -14,6 +14,11 @@
 		AC2FD1A42A756955006A57A0 /* KarloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1A32A756955006A57A0 /* KarloService.swift */; };
 		AC2FD1A62A756B83006A57A0 /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC2FD1A52A756B83006A57A0 /* APIKey.plist */; };
 		AC2FD1A82A757F52006A57A0 /* KarloResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1A72A757F52006A57A0 /* KarloResponseData.swift */; };
+		AC2FD1B92A758244006A57A0 /* KarloServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1A92A758214006A57A0 /* KarloServiceTests.swift */; };
+		AC2FD1BA2A7582B0006A57A0 /* ImageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1952A755DE6006A57A0 /* ImageConfiguration.swift */; };
+		AC2FD1BB2A7582B2006A57A0 /* KarloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1A32A756955006A57A0 /* KarloService.swift */; };
+		AC2FD1BC2A7582B4006A57A0 /* KarloResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1A72A757F52006A57A0 /* KarloResponseData.swift */; };
+		AC2FD1BD2A7582B9006A57A0 /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC2FD1A52A756B83006A57A0 /* APIKey.plist */; };
 		AC542FB72A750DC0007A9AAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FB62A750DC0007A9AAE /* AppDelegate.swift */; };
 		AC542FB92A750DC0007A9AAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */; };
 		AC542FBB2A750DC0007A9AAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FBA2A750DC0007A9AAE /* MainViewController.swift */; };
@@ -21,6 +26,16 @@
 		AC542FC32A750DC1007A9AAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC542FC12A750DC1007A9AAE /* LaunchScreen.storyboard */; };
 		AC542FCD2A751171007A9AAE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AC542FCC2A751171007A9AAE /* SnapKit */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AC2FD1B42A75823D006A57A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC542FAB2A750DC0007A9AAE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC542FB22A750DC0007A9AAE;
+			remoteInfo = ImageMaker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AC2FD1952A755DE6006A57A0 /* ImageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfiguration.swift; sourceTree = "<group>"; };
@@ -30,6 +45,8 @@
 		AC2FD1A32A756955006A57A0 /* KarloService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarloService.swift; sourceTree = "<group>"; };
 		AC2FD1A52A756B83006A57A0 /* APIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
 		AC2FD1A72A757F52006A57A0 /* KarloResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarloResponseData.swift; sourceTree = "<group>"; };
+		AC2FD1A92A758214006A57A0 /* KarloServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarloServiceTests.swift; sourceTree = "<group>"; };
+		AC2FD1B02A75823D006A57A0 /* ImageMakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageMakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC542FB32A750DC0007A9AAE /* ImageMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC542FB62A750DC0007A9AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +57,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AC2FD1AD2A75823D006A57A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC542FB02A750DC0007A9AAE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -103,10 +127,19 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		AC2FD1B12A75823D006A57A0 /* ImageMakerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC2FD1A92A758214006A57A0 /* KarloServiceTests.swift */,
+			);
+			path = ImageMakerTests;
+			sourceTree = "<group>";
+		};
 		AC542FAA2A750DC0007A9AAE = {
 			isa = PBXGroup;
 			children = (
 				AC542FB52A750DC0007A9AAE /* ImageMaker */,
+				AC2FD1B12A75823D006A57A0 /* ImageMakerTests */,
 				AC542FB42A750DC0007A9AAE /* Products */,
 				AC542FCB2A751171007A9AAE /* Frameworks */,
 			);
@@ -116,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				AC542FB32A750DC0007A9AAE /* ImageMaker.app */,
+				AC2FD1B02A75823D006A57A0 /* ImageMakerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,6 +180,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AC2FD1AF2A75823D006A57A0 /* ImageMakerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC2FD1B62A75823D006A57A0 /* Build configuration list for PBXNativeTarget "ImageMakerTests" */;
+			buildPhases = (
+				AC2FD1AC2A75823D006A57A0 /* Sources */,
+				AC2FD1AD2A75823D006A57A0 /* Frameworks */,
+				AC2FD1AE2A75823D006A57A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC2FD1B52A75823D006A57A0 /* PBXTargetDependency */,
+			);
+			name = ImageMakerTests;
+			productName = ImageMakerTests;
+			productReference = AC2FD1B02A75823D006A57A0 /* ImageMakerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AC542FB22A750DC0007A9AAE /* ImageMaker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC542FC72A750DC1007A9AAE /* Build configuration list for PBXNativeTarget "ImageMaker" */;
@@ -176,6 +228,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					AC2FD1AF2A75823D006A57A0 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = AC542FB22A750DC0007A9AAE;
+					};
 					AC542FB22A750DC0007A9AAE = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -198,11 +254,20 @@
 			projectRoot = "";
 			targets = (
 				AC542FB22A750DC0007A9AAE /* ImageMaker */,
+				AC2FD1AF2A75823D006A57A0 /* ImageMakerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AC2FD1AE2A75823D006A57A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC2FD1BD2A7582B9006A57A0 /* APIKey.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC542FB12A750DC0007A9AAE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,6 +281,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AC2FD1AC2A75823D006A57A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC2FD1BC2A7582B4006A57A0 /* KarloResponseData.swift in Sources */,
+				AC2FD1BA2A7582B0006A57A0 /* ImageConfiguration.swift in Sources */,
+				AC2FD1B92A758244006A57A0 /* KarloServiceTests.swift in Sources */,
+				AC2FD1BB2A7582B2006A57A0 /* KarloService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC542FAF2A750DC0007A9AAE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,6 +310,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AC2FD1B52A75823D006A57A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AC542FB22A750DC0007A9AAE /* ImageMaker */;
+			targetProxy = AC2FD1B42A75823D006A57A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		AC542FC12A750DC1007A9AAE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -246,6 +330,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AC2FD1B72A75823D006A57A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S63496UWBR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.corpi.ImageMakerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImageMaker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ImageMaker";
+			};
+			name = Debug;
+		};
+		AC2FD1B82A75823D006A57A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S63496UWBR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.corpi.ImageMakerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImageMaker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ImageMaker";
+			};
+			name = Release;
+		};
 		AC542FC52A750DC1007A9AAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -431,6 +559,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AC2FD1B62A75823D006A57A0 /* Build configuration list for PBXNativeTarget "ImageMakerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC2FD1B72A75823D006A57A0 /* Debug */,
+				AC2FD1B82A75823D006A57A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AC542FAE2A750DC0007A9AAE /* Build configuration list for PBXProject "ImageMaker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

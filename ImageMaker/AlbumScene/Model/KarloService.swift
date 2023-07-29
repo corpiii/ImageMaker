@@ -23,7 +23,7 @@ struct KarloService {
             if let apiKey = fetchAPIKEY() {
                 var request = URLRequest(url: url)
                 request.httpMethod = "POST"
-                request.setValue(apiKey, forHTTPHeaderField: "Authorization")
+                request.setValue("KakaoAK \(apiKey)", forHTTPHeaderField: "Authorization")
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = jsonData
                 
@@ -56,7 +56,7 @@ struct KarloService {
                             print("Error decoding to JSON: \(error)")
                         }
                     }
-                }
+                }.resume()
             }
         } catch {
             print("Error encoding to JSON: \(error)")

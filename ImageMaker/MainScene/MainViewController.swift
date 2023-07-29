@@ -586,6 +586,8 @@ private extension MainViewController {
         decoderSelectButton.snp.makeConstraints { make in
             make.width.equalTo(self.view.safeAreaLayoutGuide.snp.width).multipliedBy(0.4)
         }
+        
+        decoderSelectButton.addTarget(self, action: #selector(decoderSelectButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - Noise Remove Steps By Decoder Setting
@@ -674,6 +676,24 @@ private extension MainViewController {
         let albumController = AlbumViewController(imageConfiguration: configuration)
         let navigationController = UINavigationController(rootViewController: albumController)
         present(navigationController, animated: true)
+    }
+    
+    @objc func decoderSelectButtonTapped(_ sender: UIButton) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let ddimAction = UIAlertAction(title: "decoder_ddim_v_prediction", style: .default) { _ in
+            sender.setTitle("decoder_ddim_v_prediction", for: .normal)
+        }
+        let ddpmAction = UIAlertAction(title: "decoder_ddpm_v_prediction", style: .default) { _ in
+            sender.setTitle("decoder_ddpm_v_prediction", for: .normal)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(ddimAction)
+        alertController.addAction(ddpmAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
     }
 }
 

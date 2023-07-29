@@ -8,9 +8,9 @@
 import UIKit
 
 enum Constant {
-    static let backGroundColor: UIColor = UIColor(cgColor: .init(red: 18 / 256,
-                                                                 green: 18 / 256,
-                                                                 blue: 18 / 256,
+    static let backGroundColor: UIColor = UIColor(cgColor: .init(red: 24 / 256,
+                                                                 green: 24 / 256,
+                                                                 blue: 24 / 256,
                                                                  alpha: 1.0))
     static let textColor: UIColor = .white
 }

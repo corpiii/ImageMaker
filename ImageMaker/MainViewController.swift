@@ -205,6 +205,8 @@ class MainViewController: UIViewController {
         let stepper = UIStepper()
         stepper.translatesAutoresizingMaskIntoConstraints = false
         stepper.backgroundColor = Constant.textColor
+        stepper.minimumValue = 1
+        stepper.maximumValue = 8
         
         return stepper
     }()
@@ -540,6 +542,8 @@ private extension MainViewController {
         imageCountStackView.addArrangedSubview(UIView())
         imageCountStackView.addArrangedSubview(imageCountStpperCountLabel)
         imageCountStackView.addArrangedSubview(imageCountStepper)
+        
+        imageCountStepper.addTarget(self, action: #selector(imageCountStepperValueChanged), for: .valueChanged)
     }
     
     // MARK: - Noise Remove Steps Setting
@@ -616,6 +620,13 @@ private extension MainViewController {
 
 // MARK: - Obj Method
 private extension MainViewController {
+    // Stepper func
+    @objc func imageCountStepperValueChanged(_ sender: UIStepper) {
+        let value = Int(sender.value)
+        self.imageCountStpperCountLabel.text = "\(value)"
+    }
+    
+    // Slider func
     @objc func imageQualitySliderValueChanged(_ sender: UISlider) {
         let value = Int(sender.value)
         self.imageQualityCountLabel.text = "\(value)"

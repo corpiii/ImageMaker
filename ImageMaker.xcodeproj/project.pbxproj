@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC2FD1962A755DE6006A57A0 /* ImageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1952A755DE6006A57A0 /* ImageConfiguration.swift */; };
+		AC2FD1982A7561C1006A57A0 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1972A7561C1006A57A0 /* AlbumViewController.swift */; };
+		AC2FD19F2A7562AD006A57A0 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD19E2A7562AD006A57A0 /* PhotoCollectionViewCell.swift */; };
 		AC542FB72A750DC0007A9AAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FB62A750DC0007A9AAE /* AppDelegate.swift */; };
 		AC542FB92A750DC0007A9AAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */; };
 		AC542FBB2A750DC0007A9AAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FBA2A750DC0007A9AAE /* MainViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC2FD1952A755DE6006A57A0 /* ImageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfiguration.swift; sourceTree = "<group>"; };
+		AC2FD1972A7561C1006A57A0 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		AC2FD19E2A7562AD006A57A0 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC542FB32A750DC0007A9AAE /* ImageMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC542FB62A750DC0007A9AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +43,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC2FD1992A7561D5006A57A0 /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				AC542FBA2A750DC0007A9AAE /* MainViewController.swift */,
+			);
+			path = MainScene;
+			sourceTree = "<group>";
+		};
+		AC2FD19A2A7561E3006A57A0 /* AlbumScene */ = {
+			isa = PBXGroup;
+			children = (
+				AC2FD19D2A756285006A57A0 /* ViewController */,
+				AC2FD19C2A756280006A57A0 /* View */,
+				AC2FD19B2A756221006A57A0 /* Model */,
+			);
+			path = AlbumScene;
+			sourceTree = "<group>";
+		};
+		AC2FD19B2A756221006A57A0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC2FD1952A755DE6006A57A0 /* ImageConfiguration.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC2FD19C2A756280006A57A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC2FD19E2A7562AD006A57A0 /* PhotoCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC2FD19D2A756285006A57A0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AC2FD1972A7561C1006A57A0 /* AlbumViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		AC542FAA2A750DC0007A9AAE = {
 			isa = PBXGroup;
 			children = (
@@ -59,7 +107,8 @@
 			children = (
 				AC542FB62A750DC0007A9AAE /* AppDelegate.swift */,
 				AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */,
-				AC542FBA2A750DC0007A9AAE /* MainViewController.swift */,
+				AC2FD1992A7561D5006A57A0 /* MainScene */,
+				AC2FD19A2A7561E3006A57A0 /* AlbumScene */,
 				AC542FBF2A750DC1007A9AAE /* Assets.xcassets */,
 				AC542FC12A750DC1007A9AAE /* LaunchScreen.storyboard */,
 				AC542FC42A750DC1007A9AAE /* Info.plist */,
@@ -151,8 +200,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC542FBB2A750DC0007A9AAE /* MainViewController.swift in Sources */,
+				AC2FD1982A7561C1006A57A0 /* AlbumViewController.swift in Sources */,
 				AC542FB72A750DC0007A9AAE /* AppDelegate.swift in Sources */,
+				AC2FD1962A755DE6006A57A0 /* ImageConfiguration.swift in Sources */,
 				AC542FB92A750DC0007A9AAE /* SceneDelegate.swift in Sources */,
+				AC2FD19F2A7562AD006A57A0 /* PhotoCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +272,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -274,7 +326,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

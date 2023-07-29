@@ -625,7 +625,7 @@ private extension MainViewController {
     }
     
     func configGenerateButton() {
-        
+        generateButton.addTarget(self, action: #selector(generateButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -666,6 +666,22 @@ private extension MainViewController {
     // scrollView tapped
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @objc func generateButtonTapped() {
+        let configuration = ImageConfiguration(prompt: promptTextView.text,
+                                               negetivePrompt: negativePromptTextView.text,
+                                               imageQuality: Int(imageQualityCountLabel.text!)!,
+                                               imageCount: Int(imageCountStpperCountLabel.text!)!,
+                                               noiseRemoveSteps: Int(noiseRemoveStepsCountLabel.text!)!,
+                                               noiseRemoveScale: Double(noiseRemoveScaleCountLabel.text!)!,
+                                               decoder: decoderSelectButton.titleLabel!.text!,
+                                               noiseRemoveStepsByDecoder: Int(noiseRemoveStepsByDecoderCountLabel.text!)!,
+                                               noiseRemoveScaleByDecoder: Double(noiseRemoveScaleByDecoderCountLabel.text!)!)
+        
+        print(configuration)
+        
+        
     }
 }
 

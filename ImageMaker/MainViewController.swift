@@ -509,6 +509,8 @@ private extension MainViewController {
         promptLabelStackView.addArrangedSubview(promptLabel)
         promptLabelStackView.addArrangedSubview(UIView())
         promptLabelStackView.addArrangedSubview(promptTextCountLabel)
+        
+        promptTextView.delegate = self
     }
     
     // MARK: - Negative Prompt setting
@@ -525,6 +527,8 @@ private extension MainViewController {
         negativePromptLabelStackView.addArrangedSubview(negativePromptLabel)
         negativePromptLabelStackView.addArrangedSubview(UIView())
         negativePromptLabelStackView.addArrangedSubview(negativePromptTextCountLabel)
+        
+        negativePromptTextView.delegate = self
     }
     
     // MARK: - Image Quality Setting
@@ -662,5 +666,33 @@ private extension MainViewController {
     // scrollView tapped
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension MainViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: text)
+        
+        let koreanJamoPattern = "^[^ㄱ-ㅎㅏ-ㅣ]*$"
+        let range = text.range(of: koreanJamoPattern, options: .regularExpression)
+        
+        if range == nil {
+            return false
+        }
+        
+        if newText.count <= 256 {
+            if textView == promptTextView {
+                promptTextCountLabel.text = "\(newText.count) / 256"
+            }
+            
+            if textView == negativePromptTextView {
+                negativePromptTextCountLabel.text = "\(newText.count) / 256"
+            }
+            
+            return true
+        } else {
+            return false
+        }
     }
 }

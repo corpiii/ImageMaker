@@ -528,6 +528,8 @@ private extension MainViewController {
         imageQualityLabelStackView.addArrangedSubview(imageQualityLabel)
         imageQualityLabelStackView.addArrangedSubview(UIView())
         imageQualityLabelStackView.addArrangedSubview(imageQualityCountLabel)
+        
+        imageQualitySlider.addTarget(self, action: #selector(imageQualitySliderValueChanged), for: .valueChanged)
     }
     
     // MARK: - Image Count Setting
@@ -550,6 +552,8 @@ private extension MainViewController {
         noiseRemoveStepsLabelStackView.addArrangedSubview(noiseRemoveStepsLabel)
         noiseRemoveStepsLabelStackView.addArrangedSubview(UIView())
         noiseRemoveStepsLabelStackView.addArrangedSubview(noiseRemoveStepsCountLabel)
+        
+        noiseRemoveStepsSlider.addTarget(self, action: #selector(noiseStepsSliderValueChanged), for: .valueChanged)
     }
     
     // MARK: - Noise Remove Scale Setting
@@ -562,6 +566,8 @@ private extension MainViewController {
         noiseRemoveScaleLabelStackView.addArrangedSubview(noiseRemoveScaleLabel)
         noiseRemoveScaleLabelStackView.addArrangedSubview(UIView())
         noiseRemoveScaleLabelStackView.addArrangedSubview(noiseRemoveScaleCountLabel)
+        
+        noiseRemoveScaleSlider.addTarget(self, action: #selector(noiseScaleSliderValueChanged), for: .valueChanged)
     }
     
     // MARK: - Decoder Select Setting
@@ -586,6 +592,7 @@ private extension MainViewController {
         noiseRemoveStepsByDecoderLabelStackView.addArrangedSubview(UIView())
         noiseRemoveStepsByDecoderLabelStackView.addArrangedSubview(noiseRemoveStepsByDecoderCountLabel)
         
+        noiseRemoveStepsByDecoderSlider.addTarget(self, action: #selector(noiseStepsByDecoderSliderValueChanged), for: .valueChanged)
     }
     
     // MARK: - Noise Remove Scale By Decoder Setting
@@ -598,6 +605,8 @@ private extension MainViewController {
         noiseRemoveScaleByDecoderLabelStackView.addArrangedSubview(noiseRemoveScaleByDecoderLabel)
         noiseRemoveScaleByDecoderLabelStackView.addArrangedSubview(UIView())
         noiseRemoveScaleByDecoderLabelStackView.addArrangedSubview(noiseRemoveScaleByDecoderCountLabel)
+        
+        noiseRemoveScaleByDecoderSlider.addTarget(self, action: #selector(noiseScaleByDecodeSliderValueChanged), for: .valueChanged)
     }
     
     func configGenerateButton() {
@@ -605,3 +614,30 @@ private extension MainViewController {
     }
 }
 
+// MARK: - Obj Method
+private extension MainViewController {
+    @objc func imageQualitySliderValueChanged(_ sender: UISlider) {
+        let value = Int(sender.value)
+        self.imageQualityCountLabel.text = "\(value)"
+    }
+    
+    @objc func noiseStepsSliderValueChanged(_ sender: UISlider) {
+        let value = Int(sender.value)
+        self.noiseRemoveStepsCountLabel.text = "\(value)"
+    }
+    
+    @objc func noiseScaleSliderValueChanged(_ sender: UISlider) {
+        let value = String(format: "%.1f", sender.value)
+        self.noiseRemoveScaleCountLabel.text = "\(value)"
+    }
+    
+    @objc func noiseStepsByDecoderSliderValueChanged(_ sender: UISlider) {
+        let value = Int(sender.value)
+        self.noiseRemoveStepsByDecoderCountLabel.text = "\(value)"
+    }
+    
+    @objc func noiseScaleByDecodeSliderValueChanged(_ sender: UISlider) {
+        let value = String(format: "%.1f", sender.value)
+        self.noiseRemoveScaleByDecoderCountLabel.text = "\(value)"
+    }
+}

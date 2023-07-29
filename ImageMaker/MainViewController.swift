@@ -30,6 +30,53 @@ class MainViewController: UIViewController {
         
         return stackView
     }()
+    
+    // MARK: - Prompt Stack
+    private let promptStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    
+    private let promptLabelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        
+        return stackView
+    }()
+    
+    private let promptLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Prompt"
+        label.textColor = Constant.textColor
+        label.font = .boldSystemFont(ofSize: 20)
+        
+        return label
+    }()
+    
+    private let promptTextCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0 / 256"
+        label.textColor = .lightGray
+        label.font = .preferredFont(forTextStyle: .caption2)
+        
+        return label
+    }()
+    
+    private let promptTextView: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.layer.cornerRadius = 8.0
+        textView.layer.borderWidth = 1.0
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        return textView
+    }()
     // MARK: - View Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,5 +90,35 @@ private extension MainViewController {
     func configStackView() {
         self.view.addSubview(entireScrollView)
         entireScrollView.addSubview(entireStackView)
+        self.entireStackView.addArrangedSubview(promptStackView)
+        configPromptStackView()
+        entireScrollView.isDirectionalLockEnabled = true
+        entireScrollView.snp.makeConstraints { make in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+        
+        entireStackView.snp.makeConstraints { make in
+            make.edges.equalTo(entireScrollView.snp.edges).inset(20)
+            make.centerX.equalTo(entireScrollView.snp.centerX)
+        }
+        
+        entireScrollView.contentSize = entireStackView.bounds.size
+    }
+    
+    // MARK: - Prompt setting
+    func configPromptStackView() {
+        promptStackView.addArrangedSubview(promptLabelStackView)
+        promptStackView.addArrangedSubview(promptTextView)
+        
+        promptStackView.spacing = 10
+        
+        promptTextView.snp.makeConstraints { make in
+            make.height.equalTo(100)
+        }
+        
+        promptLabelStackView.addArrangedSubview(promptLabel)
+        promptLabelStackView.addArrangedSubview(UIView())
+        promptLabelStackView.addArrangedSubview(promptTextCountLabel)
+        
     }
 }

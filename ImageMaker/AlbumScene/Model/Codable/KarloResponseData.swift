@@ -5,9 +5,9 @@
 //  Created by 이정민 on 2023/07/30.
 //
 
-import Foundation
+//import Foundation
 
-struct KarloResponseData: Codable {
+struct KarloResponseData: Decodable {
     let id, modelVersion: String
     let images: [ResultImage]
 
@@ -18,7 +18,7 @@ struct KarloResponseData: Codable {
     }
 }
 
-struct ResultImage: Codable {
+struct ResultImage: Decodable {
     let id: String
     let image: String
     let seed: Int

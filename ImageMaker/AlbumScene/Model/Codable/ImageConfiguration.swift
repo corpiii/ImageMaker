@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageConfiguration: Codable {
+struct ImageConfiguration: Encodable {
     let prompt: String
     let negetivePrompt: String
     let imageQuality: Int

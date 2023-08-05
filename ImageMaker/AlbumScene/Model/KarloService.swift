@@ -18,7 +18,6 @@ struct KarloService {
         
         do {
             let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
             let jsonData = try encoder.encode(imageConfiguration)
             if let apiKey = fetchAPIKEY() {
                 var request = URLRequest(url: url)

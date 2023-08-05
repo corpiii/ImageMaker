@@ -98,9 +98,8 @@
 		AC2FD19B2A756221006A57A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AC2FD1952A755DE6006A57A0 /* ImageConfiguration.swift */,
+				AC85FBB62A7ED6BB00390885 /* Codable */,
 				AC2FD1A32A756955006A57A0 /* KarloService.swift */,
-				AC2FD1A72A757F52006A57A0 /* KarloResponseData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,6 +185,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC85FBB62A7ED6BB00390885 /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				AC2FD1952A755DE6006A57A0 /* ImageConfiguration.swift */,
+				AC2FD1A72A757F52006A57A0 /* KarloResponseData.swift */,
+			);
+			path = Codable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

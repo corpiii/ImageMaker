@@ -20,9 +20,11 @@
 		AC2FD1BC2A7582B4006A57A0 /* KarloResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1A72A757F52006A57A0 /* KarloResponseData.swift */; };
 		AC2FD1BD2A7582B9006A57A0 /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC2FD1A52A756B83006A57A0 /* APIKey.plist */; };
 		AC2FD1C02A758E94006A57A0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FD1BF2A758E94006A57A0 /* DetailViewController.swift */; };
+		AC50B4222A85B505000410C6 /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC50B4212A85B505000410C6 /* PromptView.swift */; };
+		AC50B4262A85BD5B000410C6 /* ConfigurationSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC50B4252A85BD5B000410C6 /* ConfigurationSliderView.swift */; };
 		AC542FB72A750DC0007A9AAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FB62A750DC0007A9AAE /* AppDelegate.swift */; };
 		AC542FB92A750DC0007A9AAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */; };
-		AC542FBB2A750DC0007A9AAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FBA2A750DC0007A9AAE /* MainViewController.swift */; };
+		AC542FBB2A750DC0007A9AAE /* ImageGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC542FBA2A750DC0007A9AAE /* ImageGeneratorViewController.swift */; };
 		AC542FC02A750DC1007A9AAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC542FBF2A750DC1007A9AAE /* Assets.xcassets */; };
 		AC542FC32A750DC1007A9AAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC542FC12A750DC1007A9AAE /* LaunchScreen.storyboard */; };
 		AC542FCD2A751171007A9AAE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AC542FCC2A751171007A9AAE /* SnapKit */; };
@@ -49,10 +51,12 @@
 		AC2FD1A92A758214006A57A0 /* KarloServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarloServiceTests.swift; sourceTree = "<group>"; };
 		AC2FD1B02A75823D006A57A0 /* ImageMakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageMakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2FD1BF2A758E94006A57A0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		AC50B4212A85B505000410C6 /* PromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptView.swift; sourceTree = "<group>"; };
+		AC50B4252A85BD5B000410C6 /* ConfigurationSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSliderView.swift; sourceTree = "<group>"; };
 		AC542FB32A750DC0007A9AAE /* ImageMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC542FB62A750DC0007A9AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AC542FBA2A750DC0007A9AAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		AC542FBA2A750DC0007A9AAE /* ImageGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGeneratorViewController.swift; sourceTree = "<group>"; };
 		AC542FBF2A750DC1007A9AAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC542FC22A750DC1007A9AAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC542FC42A750DC1007A9AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,12 +81,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AC2FD1992A7561D5006A57A0 /* MainScene */ = {
+		AC2FD1992A7561D5006A57A0 /* ImageGenerationScene */ = {
 			isa = PBXGroup;
 			children = (
-				AC542FBA2A750DC0007A9AAE /* MainViewController.swift */,
+				AC50B4202A85B4F5000410C6 /* View */,
+				AC542FBA2A750DC0007A9AAE /* ImageGeneratorViewController.swift */,
 			);
-			path = MainScene;
+			path = ImageGenerationScene;
 			sourceTree = "<group>";
 		};
 		AC2FD19A2A7561E3006A57A0 /* AlbumScene */ = {
@@ -144,6 +149,15 @@
 			path = DetailScene;
 			sourceTree = "<group>";
 		};
+		AC50B4202A85B4F5000410C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC50B4212A85B505000410C6 /* PromptView.swift */,
+				AC50B4252A85BD5B000410C6 /* ConfigurationSliderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AC542FAA2A750DC0007A9AAE = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +184,7 @@
 				AC542FB82A750DC0007A9AAE /* SceneDelegate.swift */,
 				AC2FD1A52A756B83006A57A0 /* APIKey.plist */,
 				AC2FD1A02A756676006A57A0 /* Common */,
-				AC2FD1992A7561D5006A57A0 /* MainScene */,
+				AC2FD1992A7561D5006A57A0 /* ImageGenerationScene */,
 				AC2FD19A2A7561E3006A57A0 /* AlbumScene */,
 				AC2FD1BE2A758E75006A57A0 /* DetailScene */,
 				AC542FBF2A750DC1007A9AAE /* Assets.xcassets */,
@@ -317,13 +331,15 @@
 			files = (
 				AC2FD1A22A75667E006A57A0 /* Constant.swift in Sources */,
 				AC2FD1A82A757F52006A57A0 /* KarloResponseData.swift in Sources */,
-				AC542FBB2A750DC0007A9AAE /* MainViewController.swift in Sources */,
+				AC542FBB2A750DC0007A9AAE /* ImageGeneratorViewController.swift in Sources */,
 				AC2FD1982A7561C1006A57A0 /* AlbumViewController.swift in Sources */,
 				AC542FB72A750DC0007A9AAE /* AppDelegate.swift in Sources */,
+				AC50B4222A85B505000410C6 /* PromptView.swift in Sources */,
 				AC2FD1962A755DE6006A57A0 /* ImageConfiguration.swift in Sources */,
 				AC542FB92A750DC0007A9AAE /* SceneDelegate.swift in Sources */,
 				AC2FD1C02A758E94006A57A0 /* DetailViewController.swift in Sources */,
 				AC2FD19F2A7562AD006A57A0 /* PhotoCollectionViewCell.swift in Sources */,
+				AC50B4262A85BD5B000410C6 /* ConfigurationSliderView.swift in Sources */,
 				AC2FD1A42A756955006A57A0 /* KarloService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

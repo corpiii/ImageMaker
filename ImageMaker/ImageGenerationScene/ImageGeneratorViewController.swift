@@ -26,11 +26,9 @@ class ImageGeneratorViewController: UIViewController {
         return stackView
     }()
     
-    // MARK: - Prompt Stack
     private let positivePromptView: PromptView = .init(promptLabelText: "Positive Prompt")
     private let negativePromptView: PromptView = .init(promptLabelText: "Negative Prompt")
     
-    // MARK: - Image Quality Stack
     private let imageQualitySliderView: ConfigurationSliderView = .init(targetLabelText: "ImageQuality",
                                                                         sliderValue: 70, sliderMinValue: 1,
                                                                         sliderMaxValue: 100,
@@ -74,14 +72,12 @@ class ImageGeneratorViewController: UIViewController {
         return stepper
     }()
 
-    
-    // MARK: - Image Noise Remove Steps Stack
     private let noiseRemoveStepsSliderView: ConfigurationSliderView = .init(targetLabelText: "Noise Remove Steps",
                                                                             sliderValue: 25,
                                                                             sliderMinValue: 10,
                                                                             sliderMaxValue: 100,
                                                                             decimalPlaces: 0)
-    // MARK: - Image Noise Remove Scale Stack
+    
     private let noiseRemoveScaleSliderView: ConfigurationSliderView = .init(targetLabelText: "Noise Remove Scale",
                                                                             sliderValue: 5.0,
                                                                             sliderMinValue: 1.0,
@@ -117,94 +113,18 @@ class ImageGeneratorViewController: UIViewController {
     }()
     
     // MARK: - Noise Remove Steps By Decoder Stack
-    private let noiseRemoveStepsByDecoderStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        
-        return stackView
-    }()
-    
-    private let noiseRemoveStepsByDecoderLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        
-        return stackView
-    }()
-    
-    private let noiseRemoveStepsByDecoderLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Noise Remove Steps By Decoder"
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textColor = Constant.textColor
-        
-        return label
-    }()
-    
-    private let noiseRemoveStepsByDecoderCountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "50"
-        label.textColor = Constant.textColor
-        
-        return label
-    }()
-    
-    private let noiseRemoveStepsByDecoderSlider: UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = 10
-        slider.maximumValue = 100
-        slider.value = 50
-        
-        return slider
-    }()
+    private let noiseRemoveStepsByDecoderSliderView: ConfigurationSliderView = .init(targetLabelText: "Noise Remove Steps By Decoder",
+                                                                                     sliderValue: 50,
+                                                                                     sliderMinValue: 10,
+                                                                                     sliderMaxValue: 100,
+                                                                                     decimalPlaces: 0)
     
     // MARK: - Noise Remove Scale By Decoder Stack
-    private let noiseRemoveScaleByDecoderStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        
-        return stackView
-    }()
-    
-    private let noiseRemoveScaleByDecoderLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        
-        return stackView
-    }()
-    
-    private let noiseRemoveScaleByDecoderCountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "5.0"
-        label.textColor = Constant.textColor
-        
-        return label
-    }()
-    
-    private let noiseRemoveScaleByDecoderLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Noise Remove Scale By Decoder"
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textColor = Constant.textColor
-        
-        return label
-    }()
-    
-    private let noiseRemoveScaleByDecoderSlider: UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = 1.0
-        slider.maximumValue = 20.0
-        slider.value = 5.0
-        
-        return slider
-    }()
+    private let noiseRemoveScaleByDecoderSliderView: ConfigurationSliderView = .init(targetLabelText: "Noise Remove Scale By Decoder",
+                                                                                     sliderValue: 5.0,
+                                                                                     sliderMinValue: 1.0,
+                                                                                     sliderMaxValue: 20.0,
+                                                                                     decimalPlaces: 1)
     
     // MARK: - Generate Button
     private let generateButton: UIButton = {
@@ -256,19 +176,15 @@ private extension ImageGeneratorViewController {
         self.entireStackView.addArrangedSubview(noiseRemoveStepsSliderView)
         self.entireStackView.addArrangedSubview(noiseRemoveScaleSliderView)
         self.entireStackView.addArrangedSubview(decoderSelectStackView)
-        self.entireStackView.addArrangedSubview(noiseRemoveStepsByDecoderStackView)
-        self.entireStackView.addArrangedSubview(noiseRemoveScaleByDecoderStackView)
+        self.entireStackView.addArrangedSubview(noiseRemoveStepsByDecoderSliderView)
+        self.entireStackView.addArrangedSubview(noiseRemoveScaleByDecoderSliderView)
         self.entireStackView.addArrangedSubview(generateButton)
 
         positivePromptView.textViewDelegate = self
         negativePromptView.textViewDelegate = self
         
         configImageCountStackView()
-        
         configDecoderSelectStackView()
-        
-        configNoiseRemoveStepsByDecoderStackView()
-        configNoiseRemoveScaleByDecoderStackView()
         
         configGenerateButton()
         
@@ -303,34 +219,6 @@ private extension ImageGeneratorViewController {
         decoderSelectButton.addTarget(self, action: #selector(decoderSelectButtonTapped), for: .touchUpInside)
     }
     
-    // MARK: - Noise Remove Steps By Decoder Setting
-    func configNoiseRemoveStepsByDecoderStackView() {
-        noiseRemoveStepsByDecoderStackView.addArrangedSubview(noiseRemoveStepsByDecoderLabelStackView)
-        noiseRemoveStepsByDecoderStackView.addArrangedSubview(noiseRemoveStepsByDecoderSlider)
-        
-        noiseRemoveStepsByDecoderStackView.spacing = 10
-        
-        noiseRemoveStepsByDecoderLabelStackView.addArrangedSubview(noiseRemoveStepsByDecoderLabel)
-        noiseRemoveStepsByDecoderLabelStackView.addArrangedSubview(UIView())
-        noiseRemoveStepsByDecoderLabelStackView.addArrangedSubview(noiseRemoveStepsByDecoderCountLabel)
-        
-//        noiseRemoveStepsByDecoderSlider.addTarget(self, action: #selector(noiseStepsByDecoderSliderValueChanged), for: .valueChanged)
-    }
-    
-    // MARK: - Noise Remove Scale By Decoder Setting
-    func configNoiseRemoveScaleByDecoderStackView() {
-        noiseRemoveScaleByDecoderStackView.addArrangedSubview(noiseRemoveScaleByDecoderLabelStackView)
-        noiseRemoveScaleByDecoderStackView.addArrangedSubview(noiseRemoveScaleByDecoderSlider)
-        
-        noiseRemoveScaleByDecoderStackView.spacing = 10
-        
-        noiseRemoveScaleByDecoderLabelStackView.addArrangedSubview(noiseRemoveScaleByDecoderLabel)
-        noiseRemoveScaleByDecoderLabelStackView.addArrangedSubview(UIView())
-        noiseRemoveScaleByDecoderLabelStackView.addArrangedSubview(noiseRemoveScaleByDecoderCountLabel)
-        
-//        noiseRemoveScaleByDecoderSlider.addTarget(self, action: #selector(noiseScaleByDecodeSliderValueChanged), for: .valueChanged)
-    }
-    
     func configGenerateButton() {
         generateButton.addTarget(self, action: #selector(generateButtonTapped), for: .touchUpInside)
     }
@@ -357,8 +245,8 @@ private extension ImageGeneratorViewController {
                                                noiseRemoveSteps: Int(noiseRemoveStepsSliderView.sliderValue),
                                                noiseRemoveScale: noiseRemoveScaleSliderView.sliderValue,
                                                decoder: decoderSelectButton.titleLabel!.text!,
-                                               noiseRemoveStepsByDecoder: Int(noiseRemoveStepsByDecoderCountLabel.text!)!,
-                                               noiseRemoveScaleByDecoder: Double(noiseRemoveScaleByDecoderCountLabel.text!)!)
+                                               noiseRemoveStepsByDecoder: Int(noiseRemoveStepsByDecoderSliderView.sliderValue),
+                                               noiseRemoveScaleByDecoder: noiseRemoveScaleByDecoderSliderView.sliderValue)
         
         let albumController = AlbumViewController(imageConfiguration: configuration)
         let navigationController = UINavigationController(rootViewController: albumController)

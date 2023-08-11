@@ -62,11 +62,11 @@ class PromptView: UIView {
         return textView
     }()
     
-    init(promptLabelString: String) {
+    init(promptLabelText: String) {
         super.init(frame: .zero)
         
-        promptLabel.text = promptLabelString
-        configView()
+        promptLabel.text = promptLabelText
+        configureView()
     }
     
     required init?(coder: NSCoder) {
@@ -83,7 +83,7 @@ class PromptView: UIView {
 }
 
 private extension PromptView {
-    func configView() {
+    func configureView() {
         promptStackView.addArrangedSubview(promptLabelStackView)
         promptStackView.addArrangedSubview(promptTextView)
         promptLabelStackView.addArrangedSubview(promptLabel)

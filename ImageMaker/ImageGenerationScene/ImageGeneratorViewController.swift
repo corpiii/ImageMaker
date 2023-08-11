@@ -27,53 +27,14 @@ class ImageGeneratorViewController: UIViewController {
     }()
     
     // MARK: - Prompt Stack
-    private let positivePromptView: PromptView = .init(promptLabelString: "Positive Prompt")
-    private let negativePromptView: PromptView = .init(promptLabelString: "Negative Prompt")
+    private let positivePromptView: PromptView = .init(promptLabelText: "Positive Prompt")
+    private let negativePromptView: PromptView = .init(promptLabelText: "Negative Prompt")
     
     // MARK: - Image Quality Stack
-    private let imageQualityStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        
-        return stackView
-    }()
-    
-    private let imageQualityLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        
-        return stackView
-    }()
-    
-    private let imageQualityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Image Quality"
-        label.textColor = Constant.textColor
-        label.font = .boldSystemFont(ofSize: 20)
-        
-        return label
-    }()
-    
-    private let imageQualityCountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Constant.textColor
-        label.text = "70"
-        
-        return label
-    }()
-    
-    private let imageQualitySlider: UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = 1
-        slider.maximumValue = 100
-        slider.value = 70
-        
-        return slider
-    }()
+    private let imageQualitySliderView: ConfigurationSliderView = .init(targetLabelText: "ImageQuality",
+                                                                        sliderValue: 70, sliderMinValue: 1,
+                                                                        sliderMaxValue: 100,
+                                                                        decimalPlaces: 0)
     
     // MARK: - Image Count Stack
     private let imageCountStackView: UIStackView = {
@@ -367,7 +328,7 @@ private extension ImageGeneratorViewController {
         self.entireStackView.addArrangedSubview(positivePromptView)
         self.entireStackView.addArrangedSubview(negativePromptView)
         
-        self.entireStackView.addArrangedSubview(imageQualityStackView)
+        self.entireStackView.addArrangedSubview(imageQualitySliderView)
         self.entireStackView.addArrangedSubview(imageCountStackView)
         self.entireStackView.addArrangedSubview(noiseRemoveStepsStackView)
         self.entireStackView.addArrangedSubview(noiseRemoveScaleStackView)
@@ -379,7 +340,6 @@ private extension ImageGeneratorViewController {
         positivePromptView.textViewDelegate = self
         negativePromptView.textViewDelegate = self
         
-        configImageQualityStackView()
         configImageCountStackView()
         
         configNoiseRemoveStepsStackView()
@@ -396,20 +356,6 @@ private extension ImageGeneratorViewController {
             make.edges.equalTo(entireScrollView.snp.edges).inset(20)
             make.centerX.equalTo(entireScrollView.snp.centerX)
         }
-    }
-    
-    // MARK: - Image Quality Setting
-    func configImageQualityStackView() {
-        imageQualityStackView.addArrangedSubview(imageQualityLabelStackView)
-        imageQualityStackView.addArrangedSubview(imageQualitySlider)
-        
-        imageQualityStackView.spacing = 10
-        
-        imageQualityLabelStackView.addArrangedSubview(imageQualityLabel)
-        imageQualityLabelStackView.addArrangedSubview(UIView())
-        imageQualityLabelStackView.addArrangedSubview(imageQualityCountLabel)
-        
-        imageQualitySlider.addTarget(self, action: #selector(imageQualitySliderValueChanged), for: .valueChanged)
     }
     
     // MARK: - Image Count Setting
@@ -540,7 +486,7 @@ private extension ImageGeneratorViewController {
     @objc func generateButtonTapped() {
         let configuration = ImageConfiguration(prompt: positivePromptView.promptText,
                                                negetivePrompt: negativePromptView.promptText,
-                                               imageQuality: Int(imageQualityCountLabel.text!)!,
+                                               imageQuality: Int(imageQualitySliderView.sliderValue),
                                                imageCount: Int(imageCountStpperCountLabel.text!)!,
                                                noiseRemoveSteps: Int(noiseRemoveStepsCountLabel.text!)!,
                                                noiseRemoveScale: Double(noiseRemoveScaleCountLabel.text!)!,

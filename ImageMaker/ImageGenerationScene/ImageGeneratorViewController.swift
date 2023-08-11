@@ -1,14 +1,15 @@
 //
-//  MainViewController.swift
+//  ImageGeneratorViewController.swift
 //  ImageMaker
 //
 //  Created by 이정민 on 2023/07/29.
 //
 
 import UIKit
+
 import SnapKit
 
-class MainViewController: UIViewController {
+class ImageGeneratorViewController: UIViewController {
     private let entireScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,99 +27,8 @@ class MainViewController: UIViewController {
     }()
     
     // MARK: - Prompt Stack
-    private let promptStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        
-        return stackView
-    }()
-    
-    private let promptLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        
-        return stackView
-    }()
-    
-    private let promptLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Prompt"
-        label.textColor = Constant.textColor
-        label.font = .boldSystemFont(ofSize: 20)
-        
-        return label
-    }()
-    
-    private let promptTextCountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0 / 256"
-        label.textColor = .lightGray
-        label.font = .preferredFont(forTextStyle: .caption2)
-        
-        return label
-    }()
-    
-    private let promptTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.layer.cornerRadius = 8.0
-        textView.layer.borderWidth = 1.0
-        textView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        return textView
-    }()
-    
-    // MARK: - Negative Prompt Stack
-    
-    private let negativePromptStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        
-        return stackView
-    }()
-    
-    private let negativePromptLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        
-        return stackView
-    }()
-    
-    private let negativePromptLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Negative prompt"
-        label.textColor = Constant.textColor
-        label.font = .boldSystemFont(ofSize: 20)
-        
-        return label
-    }()
-    
-    private let negativePromptTextCountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0 / 256"
-        label.textColor = .lightGray
-        label.font = .preferredFont(forTextStyle: .caption2)
-        
-        return label
-    }()
-    
-    private let negativePromptTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.layer.cornerRadius = 8.0
-        textView.layer.borderWidth = 1.0
-        textView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        return textView
-    }()
+    private let positivePromptView: PromptView = .init(promptLabelString: "Positive Prompt")
+    private let negativePromptView: PromptView = .init(promptLabelString: "Negative Prompt")
     
     // MARK: - Image Quality Stack
     private let imageQualityStackView: UIStackView = {
@@ -435,7 +345,7 @@ class MainViewController: UIViewController {
     }
 }
 
-private extension MainViewController {
+private extension ImageGeneratorViewController {
     // MARK: - ScrollView setting
     func configScrollView() {
         self.view.addSubview(entireScrollView)
@@ -454,8 +364,9 @@ private extension MainViewController {
     
     // MARK: - StackView setting
     func configStackView() {
-        self.entireStackView.addArrangedSubview(promptStackView)
-        self.entireStackView.addArrangedSubview(negativePromptStackView)
+        self.entireStackView.addArrangedSubview(positivePromptView)
+        self.entireStackView.addArrangedSubview(negativePromptView)
+        
         self.entireStackView.addArrangedSubview(imageQualityStackView)
         self.entireStackView.addArrangedSubview(imageCountStackView)
         self.entireStackView.addArrangedSubview(noiseRemoveStepsStackView)
@@ -465,8 +376,8 @@ private extension MainViewController {
         self.entireStackView.addArrangedSubview(noiseRemoveScaleByDecoderStackView)
         self.entireStackView.addArrangedSubview(generateButton)
 
-        configPromptStackView()
-        configNegativePromptStackView()
+        positivePromptView.textViewDelegate = self
+        negativePromptView.textViewDelegate = self
         
         configImageQualityStackView()
         configImageCountStackView()
@@ -485,42 +396,6 @@ private extension MainViewController {
             make.edges.equalTo(entireScrollView.snp.edges).inset(20)
             make.centerX.equalTo(entireScrollView.snp.centerX)
         }
-    }
-    
-    // MARK: - Prompt setting
-    func configPromptStackView() {
-        promptStackView.addArrangedSubview(promptLabelStackView)
-        promptStackView.addArrangedSubview(promptTextView)
-        
-        promptStackView.spacing = 10
-        
-        promptTextView.snp.makeConstraints { make in
-            make.height.equalTo(100)
-        }
-        
-        promptLabelStackView.addArrangedSubview(promptLabel)
-        promptLabelStackView.addArrangedSubview(UIView())
-        promptLabelStackView.addArrangedSubview(promptTextCountLabel)
-        
-        promptTextView.delegate = self
-    }
-    
-    // MARK: - Negative Prompt setting
-    func configNegativePromptStackView() {
-        negativePromptStackView.addArrangedSubview(negativePromptLabelStackView)
-        negativePromptStackView.addArrangedSubview(negativePromptTextView)
-        
-        negativePromptStackView.spacing = 10
-        
-        negativePromptTextView.snp.makeConstraints { make in
-            make.height.equalTo(100)
-        }
-        
-        negativePromptLabelStackView.addArrangedSubview(negativePromptLabel)
-        negativePromptLabelStackView.addArrangedSubview(UIView())
-        negativePromptLabelStackView.addArrangedSubview(negativePromptTextCountLabel)
-        
-        negativePromptTextView.delegate = self
     }
     
     // MARK: - Image Quality Setting
@@ -624,7 +499,7 @@ private extension MainViewController {
 }
 
 // MARK: - Obj Method
-private extension MainViewController {
+private extension ImageGeneratorViewController {
     // Stepper func
     @objc func imageCountStepperValueChanged(_ sender: UIStepper) {
         let value = Int(sender.value)
@@ -663,8 +538,8 @@ private extension MainViewController {
     }
     
     @objc func generateButtonTapped() {
-        let configuration = ImageConfiguration(prompt: promptTextView.text,
-                                               negetivePrompt: negativePromptTextView.text,
+        let configuration = ImageConfiguration(prompt: positivePromptView.promptText,
+                                               negetivePrompt: negativePromptView.promptText,
                                                imageQuality: Int(imageQualityCountLabel.text!)!,
                                                imageCount: Int(imageCountStpperCountLabel.text!)!,
                                                noiseRemoveSteps: Int(noiseRemoveStepsCountLabel.text!)!,
@@ -697,7 +572,7 @@ private extension MainViewController {
     }
 }
 
-extension MainViewController: UITextViewDelegate {
+extension ImageGeneratorViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let currentText = textView.text ?? ""
         let newText = (currentText as NSString).replacingCharacters(in: range, with: text)
@@ -710,12 +585,12 @@ extension MainViewController: UITextViewDelegate {
         }
         
         if newText.count <= 256 {
-            if textView == promptTextView {
-                promptTextCountLabel.text = "\(newText.count) / 256"
+            if textView == positivePromptView.promptTextView {
+                positivePromptView.setPromptTextCountLabel("\(newText.count) / 256")
             }
-            
-            if textView == negativePromptTextView {
-                negativePromptTextCountLabel.text = "\(newText.count) / 256"
+
+            if textView == negativePromptView.promptTextView {
+                negativePromptView.setPromptTextCountLabel("\(newText.count) / 256")
             }
             
             return true

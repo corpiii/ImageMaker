@@ -170,7 +170,6 @@ private extension ImageGeneratorViewController {
     func configStackView() {
         self.entireStackView.addArrangedSubview(positivePromptView)
         self.entireStackView.addArrangedSubview(negativePromptView)
-        
         self.entireStackView.addArrangedSubview(imageQualitySliderView)
         self.entireStackView.addArrangedSubview(imageCountStackView)
         self.entireStackView.addArrangedSubview(noiseRemoveStepsSliderView)
@@ -185,7 +184,6 @@ private extension ImageGeneratorViewController {
         
         configImageCountStackView()
         configDecoderSelectStackView()
-        
         configGenerateButton()
         
         entireStackView.snp.makeConstraints { make in
@@ -256,11 +254,14 @@ private extension ImageGeneratorViewController {
     @objc func decoderSelectButtonTapped(_ sender: UIButton) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let ddimAction = UIAlertAction(title: "decoder_ddim_v_prediction", style: .default) { _ in
-            sender.setTitle("decoder_ddim_v_prediction", for: .normal)
+        let ddim = "decoder_ddim_v_prediction"
+        let ddpm = "decoder_ddpm_v_prediction"
+        
+        let ddimAction = UIAlertAction(title: ddim, style: .default) { _ in
+            sender.setTitle(ddim, for: .normal)
         }
-        let ddpmAction = UIAlertAction(title: "decoder_ddpm_v_prediction", style: .default) { _ in
-            sender.setTitle("decoder_ddpm_v_prediction", for: .normal)
+        let ddpmAction = UIAlertAction(title: ddpm, style: .default) { _ in
+            sender.setTitle(ddpm, for: .normal)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
